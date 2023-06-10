@@ -6,17 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jobs.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-avatar@1.0.3/dist/avatar.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
-  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-      
+    <!-- <script src="index.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css" /> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script> -->
     <script>
-      var i=0;
       function chk() {
 
         fetch('http://localhost/3rd_jobsite/api/login_api.php')
@@ -34,252 +32,96 @@
              else{
               console.log(value);
               // delay();
-              setTimeout(function() {
-              console.log("Delay made...");
+            //   setTimeout(function() {
+            //   console.log("Delay made...");
               window.location.href=("http://localhost/3rd_jobsite/login.html");
-              }, 2000);
+            //   }, 2000);
              }
            })
-           .catch(error=>delay());
+           .catch(error=>window.location.href=("http://localhost/3rd_jobsite/login.html"));
            
       }
-      function delay(){
+      // function delay(){
 
-      setTimeout(function() {
-        console.log("Delay made...");
-        window.location.href=("http://localhost/3rd_jobsite/login.html");
-      }, 1000);
-      }
+      // setTimeout(function() {
+      //   console.log("Delay made...");
+      //   window.location.href=("http://localhost/3rd_jobsite/login.html");
+      // }, 1000);
+      // }
     document.addEventListener("DOMContentLoaded", function(event) {
       // DOMContentLoaded event has fired
       chk();
       // if(i==5)window.location.href=("http://localhost/3rd_jobsite/login.html");
     });
+    function gett(){
+      console.log("sdfg");
+      alert(2345);
+    }
     </script>
 </head>
 <body>
-    <nav style="border-radius: 28px; margin-left: 1px; margin-right: 1px; position: sticky; z-index: 200;width:100%;">
-
-        <div class="ui large menu">
-          <a id="logo" class="item" style="width: 95px;" href="index.php">
-            <img width="100%" src="image/logo.jpg" alt="">
-          </a>
-          <a class="active blue item" style="font-size:18px;" href="index.php" >
-            Admin Dashboard
-          </a>
-          <div class="right menu">
-            <div class="ui dropdown item" style="font-size:19px;">
-              &#9776;</i>
-              <div class="menu"> 
-                
-                <!-- <a class="item" href="jobs.php">Jobs</a> -->
-                <a class="item" href="applied.php">Applicants</a>
-              
-            </div>
-        </div>
-          <!-- <div class="right menu">
-            <div class="ui dropdown item" style="font-size:18px;">
-              
-              <i class="dropdown icon"></i>
-              <div class="menu">
-                <a class="item" href="contact.php">Contact</a>
-                  <a class="item" href="about.php">About Us</a>
-            </div>
-          </div> -->
-          
-          <div class="right menu">
-            <div class="ui dropdown item">
-              <img class="avatar avatar-24 bg-light rounded-circle text-white p-1"
-                src="https://raw.githubusercontent.com/twbs/icons/main/icons/person-fill.svg">
-              <div class="menu">
-                <a class="item" href="login.php">Logout</a>
-            
-              </div>
-            </div>
-          <!-- <div class="right menu">
-                <div class="ui dropdown item">
-                  <img class="avatar avatar-24 bg-light rounded-circle text-white p-1"
-                    src="https://raw.githubusercontent.com/twbs/icons/main/icons/person-fill.svg">
-                  <div class="menu">
-                    <a class="item" href="login.html">Login</a>
-                    <a class="item" href="sign.html">SignUp</a>
-                  </div>
-                </div> -->
-          </div>
     
-              </div>
-          
-            <script>$('.ui.dropdown')
-                .dropdown()
-                ;
-            </script>
-    </nav>
-
-    <section id="postjob" style="margin-top: 10px;">
-      <div class="ui accordion">
-        <div class="active title" style="width: 65px; margin-left: 50%;">
-          <div style="background-color: rgb(35, 143, 252); color: #ffffff; display: inline-block ;;width: 65px; height: 29px; border-radius: 5px; text-align: center;"><p>Post Job</p>
+     <section>
+      <h2 style="text-align: center;">JOBS</h2>
+      <div id="jobs" style="padding: 5px!important; display: flex; flex-wrap: wrap;">
+        <div class="card" style="width: 18rem; margin: 5%;">
+          <div class="card-body">
+            <h3 class="card-title">${val.company}</h3>
+            <h5 class="card-title one">${val.role}</h5>
+            <p class="card-text one">${val.skills}</p>
+            <p class="card-text one">${val.description}</p>
+            <p><span style="margin-right: 12%;">${val.ctc}</span>
+            <span style="margin-left: 12%;">${val.openings}</span></p>
+            <p><span style="margin-right: 35%;"><a href="${val.linkedin}" ><i style="font-size: 25px;" class="fa fa-linkedin"></i></a></span>
+              <span style="margin-left: 35%;"><a href="mailto:${val.email}"><i style="font-size: 25px;" class="fa fa-envelope"></i></a></span></p>
+            <!-- <button class="btn btn-primary" onclick="go_form('sdfghj')" id="on">Go somewhere</button> -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="go_form('sdfghj')">
+              Launch demo modal
+            </button>
           </div>
         </div>
-        <div class="content" style="text-align: center;">
-            <div style="background-color: rgb(4, 114, 177);">
-                <form name="jpost" class="ui form" style="width: 60%;justify-content: center; margin: auto; color: white;"   method="post" action="sdataconfig.php" >
-                    <!-- onsubmit="return validation()" -->
-                    <div class="field">
-                      <label for="cname" style="color: white;">Company Name</label>
-                      <input type="text" name="cname" id="cname" placeholder="">
-                      <p style="color: rgb(253, 71, 71);" id="nameer"></p>
-                    </div>
-                    <div class="field">
-                      <label for="position" style="color: white;">Position</label>
-                      <input type="text" name="position" id="position" placeholder="">
-                      <p style="color: rgb(253, 71, 71);" id="emailer"></p>
-                    </div>
-                    <div class="field">
-                      <label for="jobdes" style="color: white;">Job Description</label>
-                      <textarea name="jobdes" id="jobdes" cols="30" rows="10"></textarea>
-                      <p style="color: rgb(253, 71, 71);" id="numer"></p>
-                    </div>
-                    <div class="field">
-                      <label for="skill" style="color: white;">Skill Required</label>
-                      <input type="text" name="skill" id="skill"  placeholder="" >
-                      <p style="color: rgb(253, 71, 71);" id="texter"></p>
-                    </div>
-                    <div class="field">
-                        <label for="ctc" style="color: white;">CTC</label>
-                        <input type="text" name="ctc" id="ctc" placeholder="">
-                        <p style="color: rgb(253, 71, 71);" id="emailer"></p>
-                      </div>
-                    <div class="field">
-                      <div class="ui">
-                        <!-- <input type="checkbox" tabindex="0" class=""> -->
-                        <span><input type="checkbox" style="width: 35px; position: relative; top: 8px;" id="chk"></span>
-                        <span><label  style="color: white; font-size: 16px;"><a style=" color: white;"target="_blank" href="t&c.html"> I agree to the Terms and Conditions</a></label></span>
-                      </div>
-                    </div>
-                    <button   style="color: white; background-color: orange;" class="ui button" type="submit" id="post" name="post">Post</button>
-                    <button   style="color: white; background-color: rgb(249, 191, 82);" class="ui button" type="reset">Reset</button>
-                    
-                    <script type="text/javascript" id="validation">
-                       
-                        function validation(){
-                         var name=document.getElementById('nm').value;
-                         var email=document.getElementById("em").value;
-                         var num=document.getElementById("numb").value;
-                         var text=document.getElementById("txt").value;
-                         var chk=document.getElementById("chk").value;
-                          // console.log(name);
-                          // return false;
-          
-                         var namechk=/^[A-Z a-z]{3,100}$/;
-                         var numchk=/^[56789]{1}[0-9]{9}$/;
-                         var emailchk=/^[a-zA-Z0-9_]{2,}[@]{1}[a-z][.]{1}[a-z]{7}$/;
-                         var textchk=/^[a-zA-Z0-9.?-]{10,}$/;
-          
-                         if(namechk.test(name))
-                         {
-          
-                           document.getElementById("nameer").innerHTML="";
-            
-                         }
-                         else{
-                           document.getElementById("nameer").innerHTML="invalid";
-                           return false;
-                         }
-                         if(emailchk.test(email))
-                         {
-          
-                           document.getElementById("emailer").innerHTML="";
-            
-                         }
-                         else{
-                           document.getElementById("emailer").innerHTML="invalid";
-                           return false;
-                         }
-                         if(numchk.test(num))
-                         {
-          
-                           document.getElementById("numer").innerHTML="";
-            
-                         }
-                         else{
-                           document.getElementById("numer").innerHTML="invalid";
-                           return false;
-                         }
-                         if(textchk.test(text))
-                         {
-          
-                           document.getElementById("texter").innerHTML="";
-            
-                         }
-                         else{
-                           document.getElementById("texter").innerHTML="invalid";
-                           return false;
-                         }
-                       }
-                    </script>
-                  </form>   
-        <script type="text/javascript" id="gsheet_entry">
-           const scriptURL =
-               'https://script.google.com/macros/s/AKfycbzl9nuNwwk6WQxbudPodceLIdqy4ZgtYYJzOmlVEZX74HgXWGBE-6Qn7XnnK9jQlHzm/exec'
-           const form = document.forms['google-sheet']
-        
-           form.addEventListener('submit', e => {
-               e.preventDefault()
-               fetch(scriptURL, {
-                       method: 'POST',
-                       body: new FormData(form)
-                   })
-                   .then(response => alert(
-                       "Thanks for you valuable feedback!!!"))
-                   .catch(error => console.error('Error!', error.message))
-           })
-        
-                    </script>
-        
-                </div>
+      </div>
+      
+     </section>
+     <section>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Apply before this is gone</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" >
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
         </div>
-        <script>$('.ui.accordion')
-            .accordion()
-          ;
-        </script>
-      </section>
-    <section id="jobs" style="margin-bottom: 10px;">
-        <table class="ui celled tablet stackable table">
-            <thead>
-              <tr><th>Sr No.</th>
-              <th>Company Name</th>
-              <th>Position</th>
-              <th>CTC</th>
-            </tr></thead>
-            <?php 
-            $server= 'localhost';
-            $username= 'root';
-            $password='';
-            $database='jobsite_1stop';
+      </div>
+     </section>
+     <button onclick="go_form(1)">Clear2</button>
+     <script>
+     function clear() {
+       alert('clear');
+     }
+     function clear2() {
+       alert('clear2');
+     }
+     function go_form(v){
+      console.log(v);
+      const myModal = document.getElementById('myModal')
+      const myInput = document.getElementById('myInput')
 
-            $conn= mysqli_connect($server,$username,$password,$database);
-             $sql="SELECT `CName`, `Position`, `CTC` FROM `jobs`";
-            $result= mysqli_query($conn,$sql);
-            $i=0;
-            if($result->num_rows >0){
-                while($row = $result->fetch_assoc()){
-                    echo"
-                    <tbody>
-                    <tr>
-                      <td>".++$i."</td>
-                      <td>".$row['CName']."</td>
-                      <td>".$row['Position']."</td>
-                      <td>".$row['CTC']."</td>
-                    </tr>";
-                }}
-                else{
-                    echo"";
-                }
-            ?>
-              </tbody>
-          </table>
-    </section>
+      myModal.addEventListener('shown.bs.modal', () => {
+         myInput.focus()
+      })
+       
+     }
+     </script>
+      
     <footer id="footer">
         <div class="ui inverted vertical footer segment" style="padding-top: 8%;">
           <div class="ui container">

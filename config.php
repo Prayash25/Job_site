@@ -149,7 +149,7 @@ else{
         }
     }
     else if(isset($_POST['apply'])){
-        $aname=$_POST['aname'];
+        $name=$_POST['name'];
         $quali=$_POST['quali'];
         $apply=$_POST['applyfor'];
         $year=$_POST['year'];
