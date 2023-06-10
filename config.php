@@ -4,9 +4,9 @@
 //     echo "<script>console.log('$output' );</script>";
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+// header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 header("Access-Control-Allow-Credentials: true");
-header("Content-Type: application/json; charset=UTF-8");
+// header("Content-Type: application/json; charset=UTF-8");
 include './vendor/autoload.php';
 use \Firebase\JWT\JWT;
 
@@ -149,28 +149,37 @@ else{
         }
     }
     else if(isset($_POST['apply'])){
+        $jobber_email=$_POST['jobber_email'];
         $name=$_POST['name'];
-        $quali=$_POST['quali'];
-        $apply=$_POST['applyfor'];
-        $year=$_POST['year'];
+        $email=$_POST['email'];
+        $phone=$_POST['phone'];
+        $role=$_POST['role'];
+        $lkin=$_POST['linkedin'];
+        $resume=$_POST['resume'];
+        $letter=$_POST['letter'];
         
-        $sql="INSERT INTO `applicants`(`Name`, `Qualification`, `Apply`, `Year`) VALUES ('$aname','$quali','$apply','$year')";
+        $sql="INSERT INTO `candidates`(`name`,`phone`,`email`,`role`,`linked_in`, `_resume`, `cover_letter`, `jobber_email`) VALUES ('$name','$phone','$email','$role','$lkin','$resume','$letter','$jobber_email')";
         // $result=mysqli_query($conn,$query);
         // debug_to_console($result);
         // echo("<script>console.log('PHP: " . $result . "');</script>");
-        //
-        // $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-        // echo("<script>console.log('PHP: " . $row . "');</script>");
         // debug_to_console("$row");
-        // echo" display $row";
         if(mysqli_query($conn,$sql)){
             // echo"Record inserted successfully";
-            header("location:jobs.php");
+            http_response_code(200);
+            echo json_encode([
+                'status'=>200,
+                'message'=>'Record inserted',
+            ]);
+            header('Refresh: 3; URL=http://localhost/3rd_jobsite/index.html');
             // debug_to_console("hi");
         }
         else{
-            echo"failed to post the job $sql" . mysqli_error($conn);
-           
+            http_response_code(400);
+            echo json_encode([
+                'status'=>400,
+                'message'=>$mysqli->error
+            ]);
+            header('Refresh: 5; URL=http://localhost/3rd_jobsite/index.html');
         }
     }
     else{

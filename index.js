@@ -22,7 +22,7 @@ fetch('http://localhost/3rd_jobsite/api/index_api.php')
                     <p><span style="margin-right: 35%;"><a href="${val.linkedin}" ><i style="font-size: 25px;" class="fa fa-linkedin"></i></a></span>
                       <span style="margin-left: 35%;"><a href="mailto:${val.email}"><i style="font-size: 25px;" class="fa fa-envelope"></i></a></span></p>
                     <!-- <button class="btn btn-primary" onclick="go_form('sdfghj')" id="on">Go somewhere</button> -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="go_form('sdfghj')">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="go_form('${val.email}')">
                       Launch demo modal
                     </button>
                   </div>
