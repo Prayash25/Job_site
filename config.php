@@ -124,28 +124,32 @@ else{
         }
     }
     else if(isset($_POST['post'])){
-        $cname=$_POST['cname'];
-        $position=$_POST['position'];
-        $jobdes=$_POST['jobdes'];
-        $skill=$_POST['skill'];
+        $email=$_POST['email'];
+        $linkedin=$_POST['linkedin'];
+        $company=$_POST['company'];
+        $description=$_POST['description'];
+        $skills=$_POST['skills'];
         $ctc=$_POST['ctc'];
-        $sql="INSERT INTO `jobs`(`CName`, `Position`, `Jobinfo`, `Skills`, `CTC`) VALUES ('$cname','$position','$jobdes','$skill','$ctc')";
-        // $result=mysqli_query($conn,$query);
-        // debug_to_console($result);
-        // echo("<script>console.log('PHP: " . $result . "');</script>");
-        //
-        // $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-        // echo("<script>console.log('PHP: " . $row . "');</script>");
-        // debug_to_console("$row");
-        // echo" display $row";
+        $openings=$_POST['openings'];
+        $role=$_POST['role'];
+        $sql="INSERT INTO `jobs`(`email`, `linkedin`,`company`,`role`, `skills`, `description`, `ctc`,`openings`) VALUES ('$email','$linkedin','$company','$role','$skills','$description','$ctc','$openings')";
+
         if(mysqli_query($conn,$sql)){
-            // echo"Record inserted successfully";
-            header("location:index.php");
+            http_response_code(200);
+            echo json_encode([
+            'status'=>200,
+            'message'=>'Job created successfully',
+    ]);
+    header('Refresh: 5; URL=http://localhost/3rd_jobsite/employee.html');
             // debug_to_console("hi");
         }
         else{
-            echo"failed to post the job $sql" . mysqli_error($conn);
-           
+            http_response_code(400);
+            echo json_encode([
+                'status'=>400,
+                'message'=>mysqli_error($conn),
+            ]);
+            header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');           
         }
     }
     else if(isset($_POST['apply'])){

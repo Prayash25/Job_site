@@ -4,121 +4,197 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>employee</title>
+    
+    <script src="employee.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body style="width: 100%;">
+  
+  <section id="applied">
+    <button onclick="open_modal()" class="ui button">applied</button>
+    <div class="ui modal fullscreen scrollable">
+      <i class="close icon"></i>
+      <div class="header">
+        Applied
+      </div>
+      <div class="content">
+        <table class="ui celled tablet stackable table">
+          <thead>
+            <tr>
+            <th>Sr No.</th>
+            <th>Role</th>
+            <th>Name</th>
+            <th>Resume</th>
+            <th>Cover letter</th>
+            <th>Linked_In</th>
+            <th>Email</th>  
+            <th>Phone</th>
+            </tr>
+          </thead>
+          <tbody id="applied_body">
+             <tr>
+              <td>".++$i."</td>
+              <td>".$row['Name']."</td>
+              <td><a href="" target="_blank"></a></td>
+              <td>".$row['Apply']."</td>
+              <td>".$row['Year']."</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="actions">
+        <div class="ui button">Cancel</div>
+        <div class="ui button">OK</div>
+      </div>
+    </div>
+  </section>
+    <!-- <h2><a href="http://localhost/3rd_jobsite/applied.html" target="_blank" rel="noopener noreferrer">applied</a></h2> -->
     <section id="postjob" style="margin-top: 10px;">
-        <div class="ui accordion">
-          <div class="active title" style="width: 65px; margin-left: 50%;">
-            <div style="background-color: rgb(35, 143, 252); color: #ffffff; display: inline-block ;;width: 65px; height: 29px; border-radius: 5px; text-align: center;"><p>Post Job</p>
+      <div class="ui accordion">
+        <div class="active title" style="text-align: center;">
+          <button class="ui button" onclick="form_go()">Post Job</button>
+        </div>
+        <div class="content">
+          <div style="background-color: rgb(4, 114, 177);">
+            <form name="post" class="ui form" style="width: 60%;justify-content: center; margin: auto; color: white;"   method="post" action="config.php" >
+                <!-- onsubmit="return validation()" -->
+                <div class="field">
+                  <label for="email" style="color: white;">Email</label>
+                  <input type="text" name="email" id="email" placeholder="" readonly>
+                </div>
+                <div class="field">
+                  <label for="linkedin" style="color: white;">linkedin</label>
+                  <input type="text" name="linkedin" id="linkedin" placeholder="">
+                </div>
+                <div class="field">
+                  <label for="company" style="color: white;">Company</label>
+                  <input type="text" name="company" id="company" placeholder="">
+                </div>
+                <div class="field">
+                  <label for="role" style="color: white;">Role</label>
+                  <input type="text" name="role" id="role" placeholder="">
+                </div>
+                <div class="field">
+                  <label for="skills" style="color: white;">Skills</label>
+                  <input type="text" name="skills" id="skills" placeholder="">
+                </div>
+                <div class="field">
+                  <label for="role" style="color: white;">Role</label>
+                  <input type="text" name="role" id="role" placeholder="">
+                </div>
+                <div class="field">
+                  <label for="description" style="color: white;">Job Description</label>
+                  <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                </div>
+                <div class="field">
+                  <label for="ctc" style="color: white;">CTC</label>
+                  <input type="text" name="ctc" id="ctc" placeholder="">
+                </div>
+                <div class="field">
+                  <label for="openings" style="color: white;">Openings</label>
+                  <input type="text" name="openings" id="openings" placeholder="">
+                </div>
+                <div class="field">
+                  <div class="ui">
+                    <!-- <input type="checkbox" tabindex="0" class=""> -->
+                    <span><input type="checkbox" style="width: 35px; position: relative; top: 8px;" id="chk"></span>
+                    <span><label  style="color: white; font-size: 16px;"><a style=" color: white;"target="_blank" href="t&c.html"> I agree to the Terms and Conditions</a></label></span>
+                  </div>
+                </div>
+                <button   style="color: white; background-color: orange;" class="ui button" type="submit" id="post" name="post">Post</button>
+                <button   style="color: white; background-color: rgb(249, 191, 82);" class="ui button" type="reset">Reset</button>
+            </form>    
+                <!-- <script type="text/javascript" id="validation">
+                   
+                    function validation(){
+                     var name=document.getElementById('nm').value;
+                     var email=document.getElementById("em").value;
+                     var num=document.getElementById("numb").value;
+                     var text=document.getElementById("txt").value;
+                     var chk=document.getElementById("chk").value;
+                      // console.log(name);
+                      // return false;
+      
+                     var namechk=/^[A-Z a-z]{3,100}$/;
+                     var numchk=/^[56789]{1}[0-9]{9}$/;
+                     var emailchk=/^[a-zA-Z0-9_]{2,}[@]{1}[a-z][.]{1}[a-z]{7}$/;
+                     var textchk=/^[a-zA-Z0-9.?-]{10,}$/;
+      
+                     if(namechk.test(name))
+                     {
+      
+                       document.getElementById("nameer").innerHTML="";
+        
+                     }
+                     else{
+                       document.getElementById("nameer").innerHTML="invalid";
+                       return false;
+                     }
+                     if(emailchk.test(email))
+                     {
+      
+                       document.getElementById("emailer").innerHTML="";
+        
+                     }
+                     else{
+                       document.getElementById("emailer").innerHTML="invalid";
+                       return false;
+                     }
+                     if(numchk.test(num))
+                     {
+      
+                       document.getElementById("numer").innerHTML="";
+        
+                     }
+                     else{
+                       document.getElementById("numer").innerHTML="invalid";
+                       return false;
+                     }
+                     if(textchk.test(text))
+                     {
+      
+                       document.getElementById("texter").innerHTML="";
+        
+                     }
+                     else{
+                       document.getElementById("texter").innerHTML="invalid";
+                       return false;
+                     }
+                   }
+                </script> -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div id="employee_job" style="padding: 5px!important; display: flex; flex-wrap: wrap;">
+        <div class="ui card" style="width: 18rem; margin: 5%;">
+          <div class="content">
+            <div class="header">${val.company}</div>
+            <div class="meta">${val.openings}</div>
+            <div class="description">
+              <h5>${val.role}</h5>
+              <p>${val.skills}</p>
+              <p>${val.description}</p>
+            </div>
+            <div class="extra content">
+              CTC: ${val.ctc} lpa
             </div>
           </div>
-          <div class="content" style="text-align: center;">
-              <div style="background-color: rgb(4, 114, 177);">
-                  <form name="jpost" class="ui form" style="width: 60%;justify-content: center; margin: auto; color: white;"   method="post" action="sdataconfig.php" >
-                      <!-- onsubmit="return validation()" -->
-                      <div class="field">
-                        <label for="cname" style="color: white;">Company Name</label>
-                        <input type="text" name="cname" id="cname" placeholder="">
-                        <p style="color: rgb(253, 71, 71);" id="nameer"></p>
-                      </div>
-                      <div class="field">
-                        <label for="position" style="color: white;">Position</label>
-                        <input type="text" name="position" id="position" placeholder="">
-                        <p style="color: rgb(253, 71, 71);" id="emailer"></p>
-                      </div>
-                      <div class="field">
-                        <label for="jobdes" style="color: white;">Job Description</label>
-                        <textarea name="jobdes" id="jobdes" cols="30" rows="10"></textarea>
-                        <p style="color: rgb(253, 71, 71);" id="numer"></p>
-                      </div>
-                      <div class="field">
-                        <label for="skill" style="color: white;">Skill Required</label>
-                        <input type="text" name="skill" id="skill"  placeholder="" >
-                        <p style="color: rgb(253, 71, 71);" id="texter"></p>
-                      </div>
-                      <div class="field">
-                          <label for="ctc" style="color: white;">CTC</label>
-                          <input type="text" name="ctc" id="ctc" placeholder="">
-                          <p style="color: rgb(253, 71, 71);" id="emailer"></p>
-                        </div>
-                      <div class="field">
-                        <div class="ui">
-                          <!-- <input type="checkbox" tabindex="0" class=""> -->
-                          <span><input type="checkbox" style="width: 35px; position: relative; top: 8px;" id="chk"></span>
-                          <span><label  style="color: white; font-size: 16px;"><a style=" color: white;"target="_blank" href="t&c.html"> I agree to the Terms and Conditions</a></label></span>
-                        </div>
-                      </div>
-                      <button   style="color: white; background-color: orange;" class="ui button" type="submit" id="post" name="post">Post</button>
-                      <button   style="color: white; background-color: rgb(249, 191, 82);" class="ui button" type="reset">Reset</button>
-                      
-                      <script type="text/javascript" id="validation">
-                         
-                          function validation(){
-                           var name=document.getElementById('nm').value;
-                           var email=document.getElementById("em").value;
-                           var num=document.getElementById("numb").value;
-                           var text=document.getElementById("txt").value;
-                           var chk=document.getElementById("chk").value;
-                            // console.log(name);
-                            // return false;
-            
-                           var namechk=/^[A-Z a-z]{3,100}$/;
-                           var numchk=/^[56789]{1}[0-9]{9}$/;
-                           var emailchk=/^[a-zA-Z0-9_]{2,}[@]{1}[a-z][.]{1}[a-z]{7}$/;
-                           var textchk=/^[a-zA-Z0-9.?-]{10,}$/;
-            
-                           if(namechk.test(name))
-                           {
-            
-                             document.getElementById("nameer").innerHTML="";
-              
-                           }
-                           else{
-                             document.getElementById("nameer").innerHTML="invalid";
-                             return false;
-                           }
-                           if(emailchk.test(email))
-                           {
-            
-                             document.getElementById("emailer").innerHTML="";
-              
-                           }
-                           else{
-                             document.getElementById("emailer").innerHTML="invalid";
-                             return false;
-                           }
-                           if(numchk.test(num))
-                           {
-            
-                             document.getElementById("numer").innerHTML="";
-              
-                           }
-                           else{
-                             document.getElementById("numer").innerHTML="invalid";
-                             return false;
-                           }
-                           if(textchk.test(text))
-                           {
-            
-                             document.getElementById("texter").innerHTML="";
-              
-                           }
-                           else{
-                             document.getElementById("texter").innerHTML="invalid";
-                             return false;
-                           }
-                         }
-                      </script>
-          
-                  </div>
-          </div>
-          <script>$('.ui.accordion')
-              .accordion()
-            ;
-          </script>
-        </section>
-      <section id="jobs" style="margin-bottom: 10px;">
+        </div>
+      </div>
+    </section>
+      <!-- <section id="jobs" style="margin-bottom: 10px;">
           <table class="ui celled tablet stackable table">
               <thead>
                 <tr><th>Sr No.</th>
@@ -153,6 +229,6 @@
               ?>
                 </tbody>
             </table>
-      </section>
+      </section> -->
 </body>
 </html>
