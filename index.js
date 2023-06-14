@@ -4,12 +4,14 @@ fetch('http://localhost/3rd_jobsite/api/index_api.php')
            .then(res=>{
             // console.log(res);
                 sts=res.status;
+                // for(let i=0;i<1000000000;i++){}
                 return res.json();
            })
            .then(resp=>{
             console.log(resp);
-            // console.log(value);
+            // console.log(sts);
              if(sts==200){
+              let premium;
                 resp.map((val)=>{
                   v+=`<div class="card" style="width: 18rem; margin: 5%;">
                   <div class="card-body">
@@ -21,13 +23,19 @@ fetch('http://localhost/3rd_jobsite/api/index_api.php')
                     <span style="margin-left: 12%;">${val.openings}</span></p>
                     <p><span style="margin-right: 35%;"><a href="${val.linkedin}" ><i style="font-size: 25px;" class="fa fa-linkedin"></i></a></span>
                       <span style="margin-left: 35%;"><a href="mailto:${val.email}"><i style="font-size: 25px;" class="fa fa-envelope"></i></a></span></p>
-                    <!-- <button class="btn btn-primary" onclick="go_form('sdfghj')" id="on">Go somewhere</button> -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="go_form('${val.email}')">
-                      Launch demo modal
+                      Apply
                     </button>
                   </div>
                 </div>`
+                premium=`${val.linkedin}`;
+                // console.log(`${val.linkedin}`);
+                // if(`${val.linkedin}`==null)premium=0;
                 });
+                console.log(premium);
+                if(premium!='null'){
+                  document.getElementById("premium").style.display="none";
+                }
                 document.getElementById("jobs").innerHTML=v;
              }
              else{
@@ -35,6 +43,9 @@ fetch('http://localhost/3rd_jobsite/api/index_api.php')
              }
            })
            .catch(error=>console.log("Failed to load API"));
+
+
+
            
 // function gett(){
 //   console.log("fghjkgvj");

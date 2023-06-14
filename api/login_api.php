@@ -8,7 +8,7 @@
     include './../vendor/autoload.php';
     use \Firebase\JWT\JWT;
     use Firebase\JWT\Key;
-
+    
     $host= 'localhost';
     $username= 'root';
     $password='';

@@ -1,10 +1,10 @@
 <?php
+session_start();
     header("Content-Type: JSON");
-//     header("Access-Control-Allow-Origin: *");
-// header("Access-Control-Allow-Methods: POST");
-// header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-// header("Access-Control-Allow-Credentials: true");
-// header("Content-Type: application/json; charset=UTF-8");
+    include './../vendor/autoload.php';
+    use \Firebase\JWT\JWT;
+    use Firebase\JWT\Key;
+
     $host= 'localhost';
     $username= 'root';
     $password='';
@@ -12,6 +12,15 @@
 
     $conn= mysqli_connect($host,$username,$password,$database);
 
+  if(!isset($_SESSION['jwt'])|| empty($_SESSION['jwt'])) {
+      http_response_code(404);
+      exit( json_encode([
+          'status'=>404,
+          'message'=>'session expired',
+        ]));
+        header('Refresh: 3; URL=http://localhost/3rd_jobsite/login.html');
+  }
+  else{
     if($conn->connect_error){
         http_response_code(500);
         exit( json_encode([
@@ -20,7 +29,24 @@
           ]));
     }
     else{
+      $jwt=$_SESSION["jwt"];
+      $secret_key="Job_site";
+      $jwt_data=JWT::decode($jwt,new Key($secret_key,'HS256'));
+      $data=$jwt_data->data;
+      $user_email=$data->email;
+
       $query="SELECT * FROM jobs";
+
+      $query2="SELECT premium FROM `user` WHERE email='$user_email'";
+      $premium=0;
+      $r_temp=mysqli_query($conn,$query2);
+      if($r_temp){
+        while($row=mysqli_fetch_assoc($r_temp)){
+          $premium=$row['premium'];
+        } 
+        // echo $premium;
+      }
+
       $result=mysqli_query($conn,$query);
       if($result){
         $i=0;$response;
@@ -31,8 +57,9 @@
             $response[$i]['description']=$row['description'];
             $response[$i]['openings']=$row['openings'];
             $response[$i]['ctc']=$row['ctc'];
+            $response[$i]['linkedin']=NULL;
+            if($premium==1)$response[$i]['linkedin']=$row['linkedin'];
             $response[$i]['email']=$row['email'];
-            $response[$i]['linkedin']=$row['linkedin'];
             $i++;
         }
         echo(json_encode($response,JSON_PRETTY_PRINT));
@@ -45,4 +72,5 @@
           ]));
       }
     }
+  }
 ?>

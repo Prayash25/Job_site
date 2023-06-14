@@ -7,6 +7,15 @@ namespace Composer\Autoload;
 class ComposerStaticInitf0f7dcbef6e5f83574313d45aa0fb6d3
 {
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Sample\\' => 7,
+        ),
+        'P' => 
+        array (
+            'PayPalHttp\\' => 11,
+            'PayPalCheckoutSdk\\' => 18,
+        ),
         'F' => 
         array (
             'Firebase\\JWT\\' => 13,
@@ -14,6 +23,18 @@ class ComposerStaticInitf0f7dcbef6e5f83574313d45aa0fb6d3
     );
 
     public static $prefixDirsPsr4 = array (
+        'Sample\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples',
+        ),
+        'PayPalHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp',
+        ),
+        'PayPalCheckoutSdk\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk',
+        ),
         'Firebase\\JWT\\' => 
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
