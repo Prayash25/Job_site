@@ -9,6 +9,7 @@ fetch('http://localhost/3rd_jobsite/api/employee_api.php')
            })
            .then(resp=>{
             console.log(resp);
+            eml=resp;
             // console.log(value);
              if(sts1==200){
                 let v='';
@@ -32,6 +33,11 @@ fetch('http://localhost/3rd_jobsite/api/employee_api.php')
                 document.getElementById("employee_job").innerHTML=v;
                 console.log(eml);
                 // glb=eml;
+                assign(eml);
+             }
+             else if(sts1==202){
+              // console.log(sts1);
+              // console.log(eml);
                 assign(eml);
              }
              else{

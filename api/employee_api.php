@@ -8,7 +8,6 @@ session_start();
     function getLocalIp()
     { return gethostbyname(trim(`hostname`)); }
     
-
     $host= 'localhost';
     $username= 'root';
     $password='';
@@ -52,8 +51,15 @@ else{
             $response[$i]['linkedin']=$row['linkedin'];
             $i++;
         }
-        http_response_code(200);
-        echo(json_encode($response,JSON_PRETTY_PRINT));
+        if(isset($response)){
+           http_response_code(200);
+          //  $response[0]['email']=$email;
+           echo(json_encode($response,JSON_PRETTY_PRINT));
+        }
+        else{
+           http_response_code(202);
+           echo(json_encode($email,JSON_PRETTY_PRINT));
+        }
       }
       else{
         http_response_code(401);

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>employee</title>
     
-    <script src="employee.js"></script>
+    <!-- <script src="employee.js"></script> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous">
     </script>
@@ -87,10 +87,6 @@
                 <div class="field">
                   <label for="skills" style="color: white;">Skills</label>
                   <input type="text" name="skills" id="skills" placeholder="">
-                </div>
-                <div class="field">
-                  <label for="role" style="color: white;">Role</label>
-                  <input type="text" name="role" id="role" placeholder="">
                 </div>
                 <div class="field">
                   <label for="description" style="color: white;">Job Description</label>
@@ -190,45 +186,20 @@
             <div class="extra content">
               CTC: ${val.ctc} lpa
             </div>
+            <button onclick="chk()">delete</button>
           </div>
         </div>
       </div>
     </section>
-      <!-- <section id="jobs" style="margin-bottom: 10px;">
-          <table class="ui celled tablet stackable table">
-              <thead>
-                <tr><th>Sr No.</th>
-                <th>Company Name</th>
-                <th>Position</th>
-                <th>CTC</th>
-              </tr></thead>
-              <?php 
-              $server= 'localhost';
-              $username= 'root';
-              $password='';
-              $database='jobsite_1stop';
-  
-              $conn= mysqli_connect($server,$username,$password,$database);
-               $sql="SELECT `CName`, `Position`, `CTC` FROM `jobs`";
-              $result= mysqli_query($conn,$sql);
-              $i=0;
-              if($result->num_rows >0){
-                  while($row = $result->fetch_assoc()){
-                      echo"
-                      <tbody>
-                      <tr>
-                        <td>".++$i."</td>
-                        <td>".$row['CName']."</td>
-                        <td>".$row['Position']."</td>
-                        <td>".$row['CTC']."</td>
-                      </tr>";
-                  }}
-                  else{
-                      echo"";
-                  }
-              ?>
-                </tbody>
-            </table>
-      </section> -->
+    <script>
+      function chk(){
+        if(confirm("Press")==true){
+          console.log("yes");
+        }
+        else{
+          console.log("no");
+        }
+      }
+    </script>
 </body>
 </html>
