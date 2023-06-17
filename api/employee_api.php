@@ -65,7 +65,7 @@ else{
         http_response_code(401);
         exit( json_encode([
             'status'=>401,
-            'message'=>'Please try again',
+            'message'=>$conn->error,
           ]));
       }
     }

@@ -28,6 +28,11 @@ fetch('http://localhost/3rd_jobsite/api/employee_api.php')
                       CTC: ${val.ctc} lpa
                     </div>
                   </div>
+                  <form action="config.php" method="post" name="delete" onSubmit="if(!confirm('Are you sure to delete this job?')){return false;}">
+                  <input type="hidden" name="role" value="${val.role}">
+                  <input type="hidden" name="company" value="${val.company}">
+                  <button type="submit" name="delete" class="ui button">Delete</button>
+                  </form>
                 </div>`
                 });
                 document.getElementById("employee_job").innerHTML=v;
@@ -57,7 +62,21 @@ function form_go(){
   $('.ui.accordion')
   .accordion();
 }
-
+function del(){
+  if(confirm("Press")==true){
+    let obj=[
+      {
+        "company":"hutri",
+        "role":"backend developer",
+        "email":"proprayashsatpathy@gmail.com"
+      }
+    ]
+    console.log(obj);
+  }
+  else{
+    console.log("no");
+  }
+}
 
 const open_modal = () => {
   $('.ui.fullscreen.scrollable.modal').modal('setting',

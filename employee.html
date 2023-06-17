@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>employee</title>
     
-    <!-- <script src="employee.js"></script> -->
+    <script src="employee.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous">
     </script>
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body style="width: 100%;">
-  
+  <h2><a href="logout.php">Logout</a></h2>
   <section id="applied">
     <button onclick="open_modal()" class="ui button">applied</button>
     <div class="ui modal fullscreen scrollable">
@@ -186,15 +186,27 @@
             <div class="extra content">
               CTC: ${val.ctc} lpa
             </div>
-            <button onclick="chk()">delete</button>
+            <form action="config.php" method="post" name="delete" onSubmit="if(!confirm('Are you sure to delete this job?')){return false;}">
+            <input type="hidden" name="role" value="${val.role}">
+            <input type="hidden" name="company" value="${val.company}">
+            <button type="submit" name="delete" class="ui button">Delete</button>
+            </form>
           </div>
         </div>
       </div>
     </section>
     <script>
-      function chk(){
+      function del(){
         if(confirm("Press")==true){
-          console.log("yes");
+          let role=doc
+          let obj=[
+            {
+              "company":"hutri",
+              "role":"backend developer",
+              "email":"proprayashsatpathy@gmail.com"
+            }
+          ]
+          console.log(obj);
         }
         else{
           console.log("no");

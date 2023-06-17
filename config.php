@@ -9,6 +9,7 @@ header("Access-Control-Allow-Credentials: true");
 // header("Content-Type: application/json; charset=UTF-8");
 include './vendor/autoload.php';
 use \Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 function getLocalIp()
 { return gethostbyname(trim(`hostname`)); }
@@ -124,6 +125,23 @@ else{
         }
     }
     else if(isset($_POST['post'])){
+        if(!isset($_SESSION['jwt'])|| empty($_SESSION['jwt'])) {
+            http_response_code(404);
+            header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
+            exit( json_encode([
+                'status'=>404,
+                'message'=>'session expired',
+              ]));
+              
+        }
+        else{
+
+        $jwt=$_SESSION["jwt"];
+        $secret_key="Job_site";
+        $jwt_data=JWT::decode($jwt,new Key($secret_key,'HS256'));
+        $data=$jwt_data->data;
+        $email=$data->email;
+
         $email=$_POST['email'];
         $linkedin=$_POST['linkedin'];
         $company=$_POST['company'];
@@ -139,8 +157,8 @@ else{
             echo json_encode([
             'status'=>200,
             'message'=>'Job created successfully',
-    ]);
-    header('Refresh: 5; URL=http://localhost/3rd_jobsite/employee.html');
+            ]);
+        header('Refresh: 5; URL=http://localhost/3rd_jobsite/employee.html');
             // debug_to_console("hi");
         }
         else{
@@ -151,8 +169,26 @@ else{
             ]);
             header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');           
         }
+        }
     }
     else if(isset($_POST['apply'])){
+        if(!isset($_SESSION['jwt'])|| empty($_SESSION['jwt'])) {
+            http_response_code(404);
+            header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
+            exit( json_encode([
+                'status'=>404,
+                'message'=>'session expired',
+              ]));
+              
+        }
+        else{
+
+        $jwt=$_SESSION["jwt"];
+        $secret_key="Job_site";
+        $jwt_data=JWT::decode($jwt,new Key($secret_key,'HS256'));
+        $data=$jwt_data->data;
+        $email=$data->email;
+
         $jobber_email=$_POST['jobber_email'];
         $name=$_POST['name'];
         $email=$_POST['email'];
@@ -184,6 +220,60 @@ else{
                 'message'=>$mysqli->error
             ]);
             header('Refresh: 5; URL=http://localhost/3rd_jobsite/index.html');
+        }
+        }
+    }
+    else if(isset($_POST['delete'])){
+        if(!isset($_SESSION['jwt'])|| empty($_SESSION['jwt'])) {
+            http_response_code(404);
+            header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
+            exit( json_encode([
+                'status'=>404,
+                'message'=>'session expired',
+              ]));
+              
+        }
+        else{
+
+        $jwt=$_SESSION["jwt"];
+        $secret_key="Job_site";
+        $jwt_data=JWT::decode($jwt,new Key($secret_key,'HS256'));
+        $data=$jwt_data->data;
+        $email=$data->email;
+
+        if($_POST["role"] && $_POST["company"]){
+            $role=$_POST["role"];
+            $company=$_POST["company"];
+            $query1="DELETE FROM jobs WHERE email='$email' AND role='$role' AND company='$company'";
+            $query2="DELETE FROM candidates WHERE jobber_email='$email' AND role='$role';";
+            if(mysqli_query($conn,$query1)&&mysqli_query($conn,$query2)){
+                http_response_code(200);
+                header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');
+                exit( json_encode([
+                    'status'=>200,
+                    'message'=>'Job Deleted',
+                ]));
+                
+            }
+            else{
+                http_response_code(400);
+                header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');
+                exit( json_encode([
+                    'status'=>400,
+                    'message'=>'Please try again...',
+                  ]));
+                  
+            }
+        }
+        else{
+            http_response_code(402);
+            header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');
+                exit( json_encode([
+                    'status'=>402,
+                    'message'=>'Invalid',
+                ]));
+                header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');
+        }
         }
     }
     else{
