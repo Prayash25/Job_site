@@ -1,16 +1,12 @@
 <?php
 session_start();
     header("Content-Type: JSON");
+    include_once './../database/db.php';
     include './../vendor/autoload.php';
     use \Firebase\JWT\JWT;
     use Firebase\JWT\Key;
-
-    $host= 'localhost';
-    $username= 'root';
-    $password='';
-    $database='jobsite_1stop';
-
-    $conn= mysqli_connect($host,$username,$password,$database);
+    
+    $conn= mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
 
   if(!isset($_SESSION['jwt'])|| empty($_SESSION['jwt'])) {
       http_response_code(404);

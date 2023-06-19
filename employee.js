@@ -46,7 +46,9 @@ fetch('http://localhost/3rd_jobsite/api/employee_api.php')
                 assign(eml);
              }
              else{
+              
               console.log(sts1);
+              window.location.href = "http://localhost/3rd_jobsite/index.html";
              }
            })
            .catch(error=>console.log("Failed to load API"));

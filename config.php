@@ -2,6 +2,7 @@
 //  function debug_to_console($data) {
 //     $output = $data;
 //     echo "<script>console.log('$output' );</script>";
+include_once './database/db.php';
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 // header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -10,38 +11,31 @@ header("Access-Control-Allow-Credentials: true");
 include './vendor/autoload.php';
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
-
 function getLocalIp()
 { return gethostbyname(trim(`hostname`)); }
 
-$server= 'localhost';
-$username= 'root';
-$password='';
-$database='jobsite_1stop';
-
-$conn= mysqli_connect($server,$username,$password,$database);
+$conn= mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
  
 if($conn->connect_error){
     http_response_code(500);
     echo json_encode([
-        'status'=>500,
+        // 'status'=>500,
         'message'=>'Error in server',
     ]);
     header('Refresh: 3; URL=http://localhost/3rd_jobsite/login.html');
 }
 else{
-    // @$_POST["email"] && @$_POST["password"]
     session_start();
 
     if(isset($_POST['login'])){
         $email=$_POST['email'];
         $password=$_POST['password'];
-        $query="SELECT * FROM user WHERE `email`='$email' AND `password`='$password'" ;
+        $query="SELECT * FROM user WHERE `email`='$email'";
         $result=mysqli_query($conn,$query);
         if($result){
             $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
             // echo("$row[mobile] --$row[balance]");
-            if(mysqli_num_rows($result)==1){
+            if(mysqli_num_rows($result)>=1 && password_verify($_POST['password'],$row['password'])){
                 $ip=getLocalIp();
                 if($ip){
                     $payload=[
@@ -58,7 +52,7 @@ else{
                     $_SESSION["jwt"]=$jwt;
                     http_response_code(200);
                     echo json_encode([
-                        'status'=>200,
+                        // 'status'=>200,
                         'jwt'=>$jwt,
                         'message'=>'Login Successfully',
                     ]);
@@ -67,7 +61,7 @@ else{
                 else{
                     http_response_code(401);
                     echo json_encode([
-                        'status'=>401,
+                        // 'status'=>401,
                         'message'=>'Failed to get ip',
                     ]);
                     header('Refresh: 5; URL=http://localhost/3rd_jobsite/login.html');
@@ -79,7 +73,7 @@ else{
                 // echo "$error";
                 http_response_code(400);
                 echo json_encode([
-                    'status'=>400,
+                    // 'status'=>400,
                     'message'=>'Invalid Credenditial',
                 ]);
                 header('Refresh: 5; URL=http://localhost/3rd_jobsite/login.html');
@@ -88,7 +82,7 @@ else{
         else{
             http_response_code(402);
             echo json_encode([
-                'status'=>402,
+                // 'status'=>402,
                 'message'=>'Database connection failed',
             ]);
             header('Refresh: 5; URL=http://localhost/3rd_jobsite/login.html');
@@ -103,13 +97,12 @@ else{
         $name=$_POST['name'];
         $email=$_POST['email'];
         $num=$_POST['num'];
-        $password=$_POST['password'];
-        
-        $sql="INSERT INTO `user`( `name`, `email`, `password`,`phone`) VALUES ('$name','$email','$password','$num')";
+        $hash=password_hash($_POST['password'],PASSWORD_DEFAULT);
+        $sql="INSERT INTO `user`( `name`, `email`, `password`,`phone`) VALUES ('$name','$email','$hash','$num')";
         if(mysqli_query($conn,$sql)){
             http_response_code(202);
             echo json_encode([
-                'status'=>202,
+                // 'status'=>202,
                 'message'=>'User made successfully',
             ]);
             header("Refresh: 3; URL=http://localhost/3rd_jobsite/login.html");
@@ -117,7 +110,7 @@ else{
         else{
             http_response_code(400);
             echo json_encode([
-                'status'=>400,
+                // 'status'=>400,
                 'message'=>'Sorry Please try again...',
             ]);
             header("Refresh: 10; URL=http://localhost/3rd_jobsite/signup.html");
@@ -176,7 +169,7 @@ else{
             http_response_code(404);
             header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
             exit( json_encode([
-                'status'=>404,
+                // 'status'=>404,
                 'message'=>'session expired',
               ]));
               
@@ -194,11 +187,12 @@ else{
         $email=$_POST['email'];
         $phone=$_POST['phone'];
         $role=$_POST['role'];
+        $company=$_POST['company'];
         $lkin=$_POST['linkedin'];
         $resume=$_POST['resume'];
         $letter=$_POST['letter'];
         
-        $sql="INSERT INTO `candidates`(`name`,`phone`,`email`,`role`,`linked_in`, `_resume`, `cover_letter`, `jobber_email`) VALUES ('$name','$phone','$email','$role','$lkin','$resume','$letter','$jobber_email')";
+        $sql="INSERT INTO `candidates`(`name`,`phone`,`email`,`role`,`company`,`linked_in`, `_resume`, `cover_letter`, `jobber_email`) VALUES ('$name','$phone','$email','$role','$company','$lkin','$resume','$letter','$jobber_email')";
         // $result=mysqli_query($conn,$query);
         // debug_to_console($result);
         // echo("<script>console.log('PHP: " . $result . "');</script>");
@@ -207,7 +201,7 @@ else{
             // echo"Record inserted successfully";
             http_response_code(200);
             echo json_encode([
-                'status'=>200,
+                // 'status'=>200,
                 'message'=>'Record inserted',
             ]);
             header('Refresh: 3; URL=http://localhost/3rd_jobsite/index.html');
@@ -216,7 +210,7 @@ else{
         else{
             http_response_code(400);
             echo json_encode([
-                'status'=>400,
+                // 'status'=>400,
                 'message'=>$mysqli->error
             ]);
             header('Refresh: 5; URL=http://localhost/3rd_jobsite/index.html');
@@ -228,7 +222,7 @@ else{
             http_response_code(404);
             header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
             exit( json_encode([
-                'status'=>404,
+                // 'status'=>404,
                 'message'=>'session expired',
               ]));
               
@@ -250,7 +244,7 @@ else{
                 http_response_code(200);
                 header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');
                 exit( json_encode([
-                    'status'=>200,
+                    // 'status'=>200,
                     'message'=>'Job Deleted',
                 ]));
                 
@@ -259,7 +253,7 @@ else{
                 http_response_code(400);
                 header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');
                 exit( json_encode([
-                    'status'=>400,
+                    // 'status'=>400,
                     'message'=>'Please try again...',
                   ]));
                   
@@ -269,7 +263,7 @@ else{
             http_response_code(402);
             header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');
                 exit( json_encode([
-                    'status'=>402,
+                    // 'status'=>402,
                     'message'=>'Invalid',
                 ]));
                 header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');
@@ -279,7 +273,7 @@ else{
     else{
         http_response_code(404);
         echo json_encode([
-            'status'=>404,
+            // 'status'=>404,
             'message'=>'BAD REQUEST',
         ]);
         header('Refresh: 5; URL=http://localhost/3rd_jobsite/login.html');

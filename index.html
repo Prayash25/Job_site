@@ -109,7 +109,7 @@
             <p><span style="margin-right: 35%;"><a href="${val.linkedin}" ><i style="font-size: 25px;" class="fa fa-linkedin"></i></a></span>
               <span style="margin-left: 35%;"><a href="mailto:${val.email}"><i style="font-size: 25px;" class="fa fa-envelope"></i></a></span></p>
             <!-- <button class="btn btn-primary" onclick="go_form('sdfghj')" id="on">Go somewhere</button> -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="go_form('${val.email}')">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="go_form('${val.email}','alu','bharta')">
               Apply
             </button>
           </div>
@@ -132,32 +132,36 @@
                   <input type="hidden" class="form-control" name="jobber_email" id="jobber_email" aria-label="Username" aria-describedby="basic-addon1" readonly>
                 </div>
                 <div class="input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1">Name</span>
+                  <span class="input-group-text" id="name">Name</span>
                   <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1">Email</span>
+                  <span class="input-group-text" id="email">Email</span>
                   <input type="text" class="form-control" name="email" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1">Phone</span>
+                  <span class="input-group-text" id="phone">Phone</span>
                   <input type="text" class="form-control" name="phone" placeholder="Phone" aria-label="Phone" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="basic-addon1">Role</span>
-                  <input type="text" class="form-control" name="role" placeholder="Role" aria-label="Role" aria-describedby="basic-addon1">
+                  <input type="text" class="form-control" name="role" id="role" aria-label="Role" aria-describedby="basic-addon1" readonly>
                 </div>
                 <div class="input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1">Linked_in</span>
+                  <span class="input-group-text" id="basic-addon1">Company</span>
+                  <input type="text" class="form-control" name="company" id="company" aria-label="Role" aria-describedby="basic-addon1" readonly>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="linkedin">Linked_in</span>
                   <input type="text" class="form-control" name="linkedin" placeholder="#link" aria-label="Linked_in" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Resume_link</span>
-                    <input type="text" class="form-control" name="resume" placeholder="#link" aria-label="#link" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" name="resume" id="resume" placeholder="#link" aria-label="#link" aria-describedby="basic-addon1">
                   </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Cover letter</span>
-                    <input type="text" class="form-control" name="letter" placeholder="#link" aria-label="Cover letter" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" name="letter" id="letter" placeholder="#link" aria-label="Cover letter" aria-describedby="basic-addon1">
                 </div>
                 <!-- <button   style="color: white; background-color: orange;" class="btn btn-primary" type="submit" name="apply">Apply</button>
                 <button   style="color: white; background-color: rgb(249, 191, 82);" class="btn btn-secondary" data-bs-dismiss="modal" type="reset">Reset</button> -->
@@ -172,18 +176,24 @@
         </div>
       </div>
      </section>
-     <button onclick="go_form(1)">Clear2</button>
+     <!-- <button onclick="go_form(1)">Clear2</button> -->
      <script>
-     function clear() {
-       alert('clear');
-     }
-     function clear2() {
-       alert('clear2');
-     }
-     function go_form(v){
-      console.log(v);
+    //  function clear() {
+    //    alert('clear');
+    //  }
+    //  function clear2() {
+    //    alert('clear2');
+    //  }
+     function go_form(email,company,role){
+      console.log(email);
+      console.log(company);
+      console.log(role);
       let val=document.getElementById("jobber_email");
-      val.value=v;
+      val.value=email;
+      val=document.getElementById("company");
+      val.value=company;
+      val=document.getElementById("role");
+      val.value=role;
       const myModal = document.getElementById('myModal')
       const myInput = document.getElementById('myInput')
 
@@ -193,74 +203,6 @@
        
      }
      </script>
-      
-    <footer id="footer">
-        <div class="ui inverted vertical footer segment" style="padding-top: 8%;">
-          <div class="ui container">
-            <div class="ui stackable inverted divided equal height stackable grid">
-              <div class="three wide column">
-                <!-- <h4 class="ui inverted header">About</h4> -->
-                <div class="ui inverted link list" style="margin-left: 25px;">
-                  <!-- <div><img src="pictures/logo.jpg" height="45px" width="53px"></div> -->
-                  <a href="index.php" class="item">
-                    <div style="margin-bottom: 5px;"><img src="image/logo.jpg"
-                        style="max-width: 150px;"></div>
-                    <!-- <h1 class="nm" style="font-weight: bolder;">1Stop</h1> -->
-    
-                  </a>
-                  <!-- <a href="#" class="item">Religious Ceremonies</a> -->
-                  <!-- <a href="#" class="item">Gazebo Plans</a> -->
-                </div>
-              </div>
-              <div class="three wide column">
-    
-                <div class="ui inverted link list">
-                  <p style="color: #ffffff;" ><a href="privacy.php" target="_blank" class="item" style="text-decoration: none;">Privacy Policy</a></p>
-                  <!-- <p style="color: #ffffff;"><a href="return.html" target="_blank"class="item" style="text-decoration: none;">Refund Policy</a></p> -->
-                  <p style="color: #ffffff;"><a href="t&c.php" target="_blank" class="item" target="_blank" style="text-decoration: none;">Terms and conditions</a></p>
-                  <p style="color: #ffffff;"></p><a href="faq.php" target="_blank"class="item" style="text-decoration: none;">FAQ</a></p>
-                </div>
-              </div>
-              <div class="six wide column" style="text-align: center;">
-                <h4 style=" margin-bottom: 4px;color: rgba(255, 255, 255, 0.829);"><a href="contact.php" style="text-decoration: none; color: rgba(255, 255, 255, 0.829);">
-                  CONTACT US</a></h4>
-                <span><a href="mailto:proprayashsatpathy@gmail.com"><img src="image/gmail.jpg" style="max-width: 22px;opacity: 0.7;" alt=""></a></span>
-                <span><a href="https://api.whatsapp.com/send?phone=+916370341225"><img src="image/whatsapp.jpg"
-                      style="max-width: 21px; position: relative; top: 0px; opacity: 0.7;" alt=""></a></span>
-                <span><a href="tel:6370341225"><img src="image/contact.png"
-                      style="max-width: 16px; margin: 6px; position: relative; top: 0px; opacity: 0.8;" alt=""></a></span>
-                <h4 style=" margin-bottom: 14px;"><a href="blog.php" class="item"
-                    style="color: rgba(255, 255, 255, 0.829); text-decoration: none;">BLOG</a></h4>
-                <h4 style=" margin-bottom: 14px;"><a href="services.php" class="item"
-                    style="color: rgba(255, 255, 255, 0.829); text-decoration: none;">Services</a></h4>
-                <h4 style=" margin-bottom: 14px;"><a href="about.php" class="item"
-                    style="color: rgba(255, 255, 255, 0.829); text-decoration: none;">ABOUT US</a></h4>
-              </div>
-              <div class="three wide column">
-    
-                <div class="ui inverted link list">
-                  <a href="#" class="item"><img src="image/AppStore.png" style="max-width: 90px;" alt=""></a>
-                  <a href="#" class="item"><img src="image/playstore.jpg" style="max-width: 90px; margin-bottom: 30px;"
-                      alt=""></a>
-                  <p>Follow Us On</p>
-                  <span><a href="https://www.instagram.com/prayash_pro/"><img src="image/insta-PhotoRoom (1).png" style="max-width: 25px;position: relative;top: 1px;  " alt=""></a></span>
-                  <span><a href="https://www.facebook.com/prayas.satpathy"><img src="image/facebook-PhotoRoom (1).png" style="max-width: 38px; position: relative; top: -1px;" alt=""></a></span>
-                  <span><a href="https://www.linkedin.com/in/prayash-satpathy-449a65221/"><img src="image/linked.png" style="max-width: 15px; margin: 4px;" alt=""></a></span>
-                  <span><a href="https://www.snapchat.com/add/prayashsat?share_id=F5DPilbLnzM&locale=en-IN "><img src="image/snapchat.png"
-                        style="max-width: 17px; margin: 6px; position: relative; top: 2px" alt=""></a></span>
-                  <span><a href="https://twitter.com/PrayashSat"><img src="image/twitter.png" style="max-width:14px; margin: 4px;" alt=""></a></span>
-    
-                </div>
-    
-              </div>
-    
-            </div>
-            <p style="text-align: center; margin: 15px;">Copywrite &#169; 2022 All rights reserved.</p>
-          </div>
-    
-        </div>
-    
-    </footer>
 
 </body>
 </html>

@@ -68,10 +68,10 @@
           <div style="background-color: rgb(4, 114, 177);">
             <form name="post" class="ui form" style="width: 60%;justify-content: center; margin: auto; color: white;"   method="post" action="config.php" >
                 <!-- onsubmit="return validation()" -->
-                <div class="field">
-                  <label for="email" style="color: white;">Email</label>
-                  <input type="text" name="email" id="email" placeholder="" readonly>
-                </div>
+                <!-- <div class="field"> -->
+                  <!-- <label for="email" style="color: white;">Email</label> -->
+                  <input type="hidden" name="email"   id="email" placeholder="" readonly>
+                <!-- </div> -->
                 <div class="field">
                   <label for="linkedin" style="color: white;">linkedin</label>
                   <input type="text" name="linkedin" id="linkedin" placeholder="">
@@ -195,23 +195,5 @@
         </div>
       </div>
     </section>
-    <script>
-      function del(){
-        if(confirm("Press")==true){
-          let role=doc
-          let obj=[
-            {
-              "company":"hutri",
-              "role":"backend developer",
-              "email":"proprayashsatpathy@gmail.com"
-            }
-          ]
-          console.log(obj);
-        }
-        else{
-          console.log("no");
-        }
-      }
-    </script>
 </body>
 </html>
