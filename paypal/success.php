@@ -1,17 +1,13 @@
 <?php 
 session_start();
-header('Refresh: 8; URL=http://localhost/3rd_jobsite/index.html');  
+header('Refresh: 18; URL=http://localhost/3rd_jobsite/index.html');
+include_once './../database/db.php';  
 include './../vendor/autoload.php';
     use \Firebase\JWT\JWT;
     use Firebase\JWT\Key;
 
-    $host= 'localhost';
-    $username= 'root';
-    $password='';
-    $database='jobsite_1stop';
+    $conn= mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
 
-    $conn= mysqli_connect($host,$username,$password,$database);
-  
 if(!isset($_GET['PayerID'])||!isset($_SESSION['jwt'])|| empty($_SESSION['jwt'])) {
         http_response_code(404);
         exit( json_encode([
