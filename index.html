@@ -8,6 +8,7 @@
     <title>Jobs.com</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -59,30 +60,134 @@
     }
     </script>
     <script src="index.js"></script>
+    <style>
+      @media (min-width:992px){
+        #user_icon{
+        position: absolute!important;
+        right: 1%!important; 
+        margin-top: 1%;
+        }
+      }
+      .text{
+        font-family: sans-serif;
+        font-size: 20px;
+      }
+      .bold{
+        font-weight: 900;
+      }
+      a{
+        color: #fbc257;
+      }
+    </style>
 </head>
 <body>
-    <h2><a target="_blank" href="http://localhost/3rd_jobsite/employee.html">employee</a></h2>
-    <h2><a href="logout.php">Logout</a></h2>
+  
+  <!-- <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" style="background-color: #009fda!important;">
+    
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="image/jobs.png" alt="Bootstrap" style="width: 47px;height: 35px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item" style="margin: 3px; font-weight: bold;">
+            <a class="nav-link active" aria-current="page" href="http://localhost/3rd_jobsite/index.html" style="color: white;">Home</a>
+          </li>
+          <li class="nav-item"style="margin: 3px; font-weight: bold;">
+            <a class="nav-link" href="#jobs" style="color: white;">Jobs</a>
+          </li>
+          <li class="nav-item"style="margin: 3px; font-weight: bold;">
+            <a class="nav-link" href="http://localhost/3rd_jobsite/employee.html" style="color: white;">Employee</a>
+          </li>
+          <li id="user_icon" style=" position:relative;right: 1%!important; background-color:#009fda;">
+            <div class="dropstart" style="background-color:#009fda;">
+              <div class=" dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:#009fda; color: #009fda;">
+                <i class="fa fa-user-circle" style="font-size:24px;color:white;"></i>
+              </div>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="logout.php" style="text-align: left;font-size: 12px;">Logout</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white" style="background-color: #ffffff;width: 100%;z-index: 5;margin-bottom: 5% ;">
+      <div class="container" style="background-color: #ffffff;">
+        <a class="navbar-brand" style="margin-right: 15px; color:#000000;font-family: Verdana, Geneva, Tahoma, sans-serif;font-weight: 900;"  href="#">
+          <img src="image/logo.png" alt="brand" style="width: 50px;" srcset="">
+          <span class="bold text" style="font-size: 22px;">.Job</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span style="width: 15px;" class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="http://localhost/3rd_jobsite/index.html" style="color:#000000;font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif;margin-right: 13px;">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color:#000000;font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif;margin-right: 13px;" href="#jobs">Jobs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color:#000000;font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif;margin-right: 3px;" href="http://localhost/3rd_jobsite/employee.html" >Employee</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="logout.php" style="font-size: 12px;font-weight: bold; margin: 3px;"><i class="fa fa-user-circle" style="font-size:24px;color:#fbc257;"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </nav>
+  <header style="margin: 5rem 0;text-align: center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+            <div class="text bold" style="margin: 24px;margin-top: 45px; color: #fbc257;font-family:sans-serif;">
+              Let's go
+            </div>
+            <div class="text bold" style="margin: 24px;line-height: 30px; font-size: 35px;">
+              Lorem ipsum dolor sit amet lod.
+            </div>
+            <div class="text-hero-regular" style="margin: 24px;">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus, fugit! Eveniet porro at assumenda. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            </div>
+            <div class="btn" style="margin: 24px; ">
+              <a href="#jobs" class="btn btn-primary" style="background-color:#fbc257;width: 100px; border: none;">Explore</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+          <img src="image/hero.png " alt="" srcset="">
+        </div>
+      </div>
+    </div>
+  </header>
+    <!-- <h2><a target="_blank" href="http://localhost/3rd_jobsite/employee.html">employee</a></h2> -->
     <div id="premium">
       <p>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+        <button class="btn btn-primary" style="background-color: #fbc257;margin: 5px;border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
           Buy Premium
         </button>
       </p>
       <div style="min-height: 5px;">
         <div class="collapse collapse-horizontal" id="collapseWidthExample">
-          <div class="card card-body" style="width: 450px;">
+          <div class="card card-body text" style="width: 450px;font-size: 16px;border: 1px solid #fbc257;margin: 5px;border-radius: 15px;" >
             Buy lifetime premium to get linkedin profile of recruiter.
             <form method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr" name="paypal_form" id="paypal_form">
               <input type="hidden" name="business" value="getplaced@tech.org">
               <input type="hidden" name="item" id="item" value="Premium" readonly>
-              <label>$</label>
-              <input type="text" name="amount" id="amount" value="1000" style="width: 60px;" readonly>
+              <label class="bold">$</label>
+              <input type="text" name="amount" id="amount" value="100" style="width: 50px;" readonly>
               <input type="hidden" name="currency_code" value="USD">
               <input type="hidden" name="cmd" value="_xclick">
               <input type="hidden" name="return" value="http://localhost/3rd_jobsite/paypal/success.php">
               <input type="hidden" name="cancel_return" value="http://localhost/3rd_jobsite/paypal/cancel.php">
-              <button type="submit" name="paypal">Proceed</button>
+              <button type="submit" name="paypal" class="btn-secondary
+              btn">Proceed</button>
             </form>
             <script type="text/javascript">
               jQuery(document).ready(function(){
@@ -203,6 +308,55 @@
        
      }
      </script>
-
+     <footer class="bg-dark text-center text-white">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <div class="row">
+          <div class="col-md-3">
+            <img src="image/logo.png" style="width: 100px;margin-bottom: 10px;" alt="" srcset="">
+          </div>
+          <div class="col-md-9">
+            <div class="mb-4">
+              <!-- Facebook -->
+              <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fa fa-facebook"></i
+              ></a>
+        
+              <!-- Twitter -->
+              <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fa fa-twitter"></i
+              ></a>
+        
+              <!-- Google -->
+              <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fa fa-google"></i
+              ></a>
+        
+              <!-- Instagram -->
+              <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fa fa-instagram"></i
+              ></a>
+        
+              <!-- Linkedin -->
+              <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fa fa-linkedin"></i
+              ></a>
+        
+              <!-- Github -->
+              <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fa fa-github"></i
+              ></a>
+                </div>
+          </div>
+        </div>
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:proprayashsatpathy@gmail.com
+      </div>
+      <!-- Copyright -->
+    </footer>
 </body>
 </html>

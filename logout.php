@@ -4,7 +4,7 @@ if(!isset($_SESSION['jwt'])|| empty($_SESSION['jwt'])) {
     unset($_SESSION['jwt']);
 }
 session_destroy();
-header('Refresh: 10; URL=http://localhost/3rd_jobsite/login.html');
+header('Refresh: 3; URL=http://localhost/3rd_jobsite/login.html');
                 exit( json_encode([
                     'message'=>'Logging out successfully...',
                   ]));

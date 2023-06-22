@@ -15,15 +15,15 @@ fetch('http://localhost/3rd_jobsite/api/index_api.php')
                 resp.map((val)=>{
                   v+=`<div class="card" style="width: 18rem; margin: 5%;">
                   <div class="card-body">
-                    <h3 class="card-title">${val.company}</h3>
-                    <h5 class="card-title one">${val.role}</h5>
+                    <h3 class="card-title" >${val.company}</h3>
+                    <h5 class="card-title one" style="color:#fbc257;">${val.role}</h5>
                     <p class="card-text one">${val.skills}</p>
                     <p class="card-text one">${val.description}</p>
-                    <p><span style="margin-right: 12%;">${val.ctc}</span>
-                    <span style="margin-left: 12%;">${val.openings}</span></p>
+                    <p><span class="bold"; style="margin-right: 12%;">CTC: ${val.ctc}</span>
+                    <span style="margin-left: 12%;">Openings: ${val.openings}</span></p>
                     <p><span style="margin-right: 35%;"><a href="${val.linkedin}" ><i style="font-size: 25px;" class="fa fa-linkedin"></i></a></span>
                       <span style="margin-left: 35%;"><a href="mailto:${val.email}"><i style="font-size: 25px;" class="fa fa-envelope"></i></a></span></p>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="go_form('${val.email}','${val.role}','${val.company}')">
+                    <button type="button" class="btn btn-primary" style="background-color:#fbc257;border:none;" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="go_form('${val.email}','${val.role}','${val.company}')">
                       Apply
                     </button>
                   </div>
