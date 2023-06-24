@@ -15,7 +15,7 @@ fetch('http://localhost/3rd_jobsite/api/employee_api.php')
                 let v='';
                 resp.map((val)=>{
                   eml=`${val.email}`;
-                  v+=`<div class="ui card" style="width: 18rem; margin: 5%;">
+                  v+=`<div class="ui card" style="width: 18rem; margin: 5%;" data-aos="flip-up" data-aos-duration="1000">
                   <div class="content">
                     <div class="header">${val.company}</div>
                     <div class="meta">${val.openings}</div>

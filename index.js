@@ -13,7 +13,7 @@ fetch('http://localhost/3rd_jobsite/api/index_api.php')
              if(sts==200){
               let premium;
                 resp.map((val)=>{
-                  v+=`<div class="card" style="width: 18rem; margin: 5%;">
+                  v+=`<div class="card" style="width: 18rem; margin: 5%;" data-aos="flip-up" data-aos-duration="1000">
                   <div class="card-body">
                     <h3 class="card-title" >${val.company}</h3>
                     <h5 class="card-title one" style="color:#fbc257;">${val.role}</h5>
