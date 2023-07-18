@@ -18,11 +18,15 @@ $conn= mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
  
 if($conn->connect_error){
     http_response_code(500);
-    echo json_encode([
-        // 'status'=>500,
-        'message'=>'Error in server',
-    ]);
-    header('Refresh: 3; URL=http://localhost/3rd_jobsite/login.html');
+    echo("
+                    <h1>Error 500</h1>
+                    <h2>Server Error</h2>
+                    ");
+    // echo json_encode([
+    //     // 'status'=>500,
+    //     'message'=>'Error in server',
+    // ]);
+    header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
 }
 else{
     session_start();
@@ -51,20 +55,27 @@ else{
                     $jwt=JWT::encode($payload,$secret_key,'HS256');
                     $_SESSION["jwt"]=$jwt;
                     http_response_code(200);
-                    echo json_encode([
-                        // 'status'=>200,
-                        'jwt'=>$jwt,
-                        'message'=>'Login Successfully',
-                    ]);
-                    header('Refresh: 3; URL=http://localhost/3rd_jobsite/index.html');
+                    echo("
+                    <h1>Loggin Successfully...</h1>
+                    ");
+                    // echo json_encode([
+                    //     // 'status'=>200,
+                    //     'jwt'=>$jwt,
+                    //     'message'=>'Login Successfully',
+                    // ]);
+                    header('Refresh: 2; URL=http://localhost/3rd_jobsite/index.html');
                 }
                 else{
                     http_response_code(401);
-                    echo json_encode([
-                        // 'status'=>401,
-                        'message'=>'Failed to get ip',
-                    ]);
-                    header('Refresh: 5; URL=http://localhost/3rd_jobsite/login.html');
+                    echo("
+                    <h1>Error 401</h1>
+                    <h2>Failed to get IP.</h2>
+                    ");
+                    // echo json_encode([
+                    //     // 'status'=>401,
+                    //     'message'=>'Failed to get ip',
+                    // ]);
+                    header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
                 }
                 
             } 
@@ -72,20 +83,28 @@ else{
                 // $error='email id and password doesnot match';   
                 // echo "$error";
                 http_response_code(400);
-                echo json_encode([
-                    // 'status'=>400,
-                    'message'=>'Invalid Credenditial',
-                ]);
-                header('Refresh: 5; URL=http://localhost/3rd_jobsite/login.html');
+                echo("
+                    <h1>Error 400</h1>
+                    <h2>Invalid Credential</h2>
+                    ");
+                // echo json_encode([
+                //     // 'status'=>400,
+                //     'message'=>'Invalid Credenditial',
+                // ]);
+                header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
             }   
         }
         else{
             http_response_code(402);
-            echo json_encode([
-                // 'status'=>402,
-                'message'=>'Database connection failed',
-            ]);
-            header('Refresh: 5; URL=http://localhost/3rd_jobsite/login.html');
+            echo("
+                    <h1>Error 402</h1>
+                    <h2>Connection Error...</h2>
+            ").mysqli_error($conn);
+            // echo json_encode([
+            //     // 'status'=>402,
+            //     'message'=>'Database connection failed',
+            // ]);
+            header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
         }
         
             // header("location:admin.html");
@@ -101,30 +120,41 @@ else{
         $sql="INSERT INTO `user`( `name`, `email`, `password`,`phone`) VALUES ('$name','$email','$hash','$num')";
         if(mysqli_query($conn,$sql)){
             http_response_code(202);
-            echo json_encode([
-                // 'status'=>202,
-                'message'=>'User made successfully',
-            ]);
-            header("Refresh: 3; URL=http://localhost/3rd_jobsite/login.html");
+            echo("
+                <h2>User Created</h2>
+            ");
+            // echo json_encode([
+            //     // 'status'=>202,
+            //     'message'=>'User made successfully',
+            // ]);
+            header("Refresh: 2; URL=http://localhost/3rd_jobsite/login.html");
         }
         else{
-            http_response_code(400);
-            echo json_encode([
-                // 'status'=>400,
-                'message'=>'Sorry Please try again...',
-            ]);
-            header("Refresh: 10; URL=http://localhost/3rd_jobsite/signup.html");
-            echo"error could not excecute $sql" . mysqli_error($conn);
+            http_response_code(402);
+            echo("
+                    <h1>Error 400</h1>
+                    <h2>Error!</h2>
+                    ");
+            // echo json_encode([
+            //     // 'status'=>400,
+            //     'message'=>'Sorry Please try again...',
+            // ]);
+            header("Refresh: 4; URL=http://localhost/3rd_jobsite/signup.html");
+            echo" " . mysqli_error($conn);
         }
     }
-    else if(isset($_POST['post'])){
+    else if(isset($_POST['post'])){ 
         if(!isset($_SESSION['jwt'])|| empty($_SESSION['jwt'])) {
             http_response_code(404);
             header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
-            exit( json_encode([
-                'status'=>404,
-                'message'=>'session expired',
-              ]));
+            echo("
+                    <h1>Error 404</h1>
+                    <h2>Session Expired.</h2>
+                    ");
+            // exit( json_encode([
+            //     'status'=>404,
+            //     'message'=>'session expired',
+            //   ]));
               
         }
         else{
@@ -147,20 +177,27 @@ else{
 
         if(mysqli_query($conn,$sql)){
             http_response_code(200);
-            echo json_encode([
-            'status'=>200,
-            'message'=>'Job created successfully',
-            ]);
-        header('Refresh: 5; URL=http://localhost/3rd_jobsite/employee.html');
+            echo("
+                    <h2>Job Created Successfully...</h2>
+                    ");
+            // echo json_encode([
+            // 'status'=>200,
+            // 'message'=>'Job created successfully',
+            // ]);
+              header('Refresh: 2; URL=http://localhost/3rd_jobsite/employee.html');
             // debug_to_console("hi");
         }
         else{
-            http_response_code(400);
-            echo json_encode([
-                'status'=>400,
-                'message'=>mysqli_error($conn),
-            ]);
-            header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');           
+            http_response_code(402);
+            echo("
+                    <h1>Error 402</h1>
+                    <h2></h2>
+                    ").mysqli_error($conn);
+            // echo json_encode([
+            //     'status'=>400,
+            //     'message'=>,
+            // ]);
+            header('Refresh: 4; URL=http://localhost/3rd_jobsite/employee.html');           
         }
         }
     }
@@ -168,10 +205,14 @@ else{
         if(!isset($_SESSION['jwt'])|| empty($_SESSION['jwt'])) {
             http_response_code(404);
             header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
-            exit( json_encode([
-                // 'status'=>404,
-                'message'=>'session expired',
-              ]));
+            echo("
+                    <h1>Error 404</h1>
+                    <h2>Session Expired</h2>
+                    ");
+            // exit( json_encode([
+            //     // 'status'=>404,
+            //     'message'=>'session expired',
+            //   ]));
               
         }
         else{
@@ -200,31 +241,37 @@ else{
         if(mysqli_query($conn,$sql)){
             // echo"Record inserted successfully";
             http_response_code(200);
-            echo json_encode([
-                // 'status'=>200,
-                'message'=>'Record inserted',
-            ]);
-            header('Refresh: 3; URL=http://localhost/3rd_jobsite/index.html');
+            echo("
+                    <h2>Applied Successfully...</h2>
+                    ");
+            // echo json_encode([
+            //     // 'status'=>200,
+            //     'message'=>'Record inserted',
+            // ]);
+            header('Refresh: 2; URL=http://localhost/3rd_jobsite/index.html');
             // debug_to_console("hi");
         }
         else{
-            http_response_code(400);
-            echo json_encode([
-                // 'status'=>400,
-                'message'=>$mysqli->error
-            ]);
-            header('Refresh: 5; URL=http://localhost/3rd_jobsite/index.html');
+            http_response_code(402);
+            echo("
+                    <h2>Error 402.</h2>
+                    ").mysqli_error($conn);
+            header('Refresh: 4; URL=http://localhost/3rd_jobsite/index.html');
         }
         }
     }
     else if(isset($_POST['delete'])){
         if(!isset($_SESSION['jwt'])|| empty($_SESSION['jwt'])) {
             http_response_code(404);
+            echo("
+                    <h1>Error 404</h1>
+                    <h2>Session Expired</h2>
+                    ");
             header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
-            exit( json_encode([
-                // 'status'=>404,
-                'message'=>'session expired',
-              ]));
+            // exit( json_encode([
+            //     // 'status'=>404,
+            //     'message'=>'session expired',
+            //   ]));
               
         }
         else{
@@ -242,41 +289,50 @@ else{
             $query2="DELETE FROM candidates WHERE jobber_email='$email' AND role='$role';";
             if(mysqli_query($conn,$query1)&&mysqli_query($conn,$query2)){
                 http_response_code(200);
-                header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');
-                exit( json_encode([
-                    // 'status'=>200,
-                    'message'=>'Job Deleted',
-                ]));
+                header('Refresh: 2; URL=http://localhost/3rd_jobsite/employee.html');
+                echo("
+                    <h2>Job Deleted...</h2>
+                    ");
+                // exit( json_encode([
+                //     // 'status'=>200,
+                //     'message'=>'Job Deleted',
+                // ]));
                 
             }
             else{
-                http_response_code(400);
-                header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');
-                exit( json_encode([
-                    // 'status'=>400,
-                    'message'=>'Please try again...',
-                  ]));
+                http_response_code(402);
+                header('Refresh: 4; URL=http://localhost/3rd_jobsite/employee.html');
+                echo("
+                    <h1>Error 402</h1>
+                    ").mysqli_error($conn);
+                // exit( json_encode([
+                //     // 'status'=>400,
+                //     'message'=>'Please try again...',
+                //   ]));
                   
             }
         }
         else{
-            http_response_code(402);
-            header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');
-                exit( json_encode([
-                    // 'status'=>402,
-                    'message'=>'Invalid',
-                ]));
-                header('Refresh: 3; URL=http://localhost/3rd_jobsite/employee.html');
+            http_response_code(401);
+            header('Refresh: 4; URL=http://localhost/3rd_jobsite/employee.html');
+                echo("
+                    <h1>Error 401</h1>
+                    <h2>Invalid Redirction</h2>
+                ");
         }
         }
     }
     else{
-        http_response_code(404);
-        echo json_encode([
-            // 'status'=>404,
-            'message'=>'BAD REQUEST',
-        ]);
-        header('Refresh: 5; URL=http://localhost/3rd_jobsite/login.html');
+        http_response_code(401);
+        echo("
+                    <h1>Error 401</h1>
+                    <h2>Bad Request</h2>
+                    ");
+        // echo json_encode([
+        //     // 'status'=>404,
+        //     'message'=>'BAD REQUEST',
+        // ]);
+        header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
     }
 
     mysqli_close($conn);

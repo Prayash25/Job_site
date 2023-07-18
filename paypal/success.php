@@ -10,11 +10,15 @@ include './../vendor/autoload.php';
 
 if(!isset($_GET['PayerID'])||!isset($_SESSION['jwt'])|| empty($_SESSION['jwt'])) {
         http_response_code(404);
-        exit( json_encode([
-            'status'=>404,
-            'message'=>'session expired',
-          ]));
-          header('Refresh: 3; URL=http://localhost/3rd_jobsite/login.html');
+        echo("
+                    <h1>Error 404</h1>
+                    <h2>Session Expired</h2>
+                    ");
+        // exit( json_encode([
+        //     'status'=>404,
+        //     'message'=>'session expired',
+        //   ]));
+          header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');
 }
 else{
     $jwt=$_SESSION["jwt"];
@@ -25,29 +29,36 @@ else{
 
     if($conn->connect_error){
         http_response_code(500);
-        exit( json_encode([
-            'status'=>500,
-            'message'=>'Error in server',
-          ]));
-        header('Refresh: 3; URL=http://localhost/3rd_jobsite/login.html');  
+        echo("
+          <h1>Error 500</h1>
+          <h2>Server error</h2>
+        ");
+        header('Refresh: 4; URL=http://localhost/3rd_jobsite/login.html');  
     }
     else{
       $query="UPDATE user SET premium=1 WHERE email='$email'";
       if(mysqli_query($conn,$query)){
         http_response_code(200);
-        exit( json_encode([
-            'status'=>200,
-            'message'=>'Payment completed...',
-          ]));
-          header('Refresh: 3; URL=http://localhost/3rd_jobsite/index.html');  
+        echo("
+              <h2>Payment done successfully...</h2>
+        ");
+        // exit( json_encode([
+        //     'status'=>200,
+        //     'message'=>'Payment completed...',
+        //   ]));
+          header('Refresh: 2; URL=http://localhost/3rd_jobsite/index.html');  
       }
       else{
-        http_response_code(400);
-        exit( json_encode([
-            'status'=>400,
-            'message'=>'Error...',
-          ]));
-          header('Refresh: 3; URL=http://localhost/3rd_jobsite/index.html');  
+        http_response_code(402);
+        echo("
+                    <h1>Error 402</h1>
+                    <h2></h2>
+                    ").mysqli_error($conn);
+        // exit( json_encode([
+        //     'status'=>400,
+        //     'message'=>'Error...',
+        //   ]));
+          header('Refresh: 4; URL=http://localhost/3rd_jobsite/index.html');  
       }
     }
 }

@@ -21,7 +21,7 @@
     ;</script>
 </head>
 <body style="width: 100%;">
-  <nav style="border-radius: 28px; margin-left: 1px; margin-right: 1px; position: sticky; z-index: 200;width:100%;">
+  <nav style="border-radius: 28px; margin-left: 1px; margin-right: 1px; position: fixed; z-index: 200;width:100%;top: 0%;">
 
     <div class="ui large menu" data-aos="zoom-out" data-aos-duration="1500">
       <a id="logo" class="item" style="width: 95px;margin-left: 25px; background-color: white; border: none;" href="http://localhost/3rd_jobsite/index.html">
@@ -44,7 +44,7 @@
     </div>
   </nav>
   <!-- <h2><a href="logout.php">Logout</a></h2> -->
-  <section id="applied">
+  <section id="applied" style="margin: 5rem 0;">
     <button onclick="open_modal()" style="background-color: #fbc257;" class="ui button" data-aos="zoom-in-right" data-aos-duration="1000">applied</button>
     <div class="ui modal fullscreen scrollable">
       <i class="close icon"></i>
@@ -197,7 +197,7 @@
     </section>
     <section>
       <div id="employee_job" style="padding: 5px!important; display: flex; flex-wrap: wrap;">
-        <div class="ui card" style="width: 18rem; margin: 5%;">
+        <!-- <div class="ui card" style="width: 18rem; margin: 5%;">
           <div class="content">
             <div class="header">${val.company}</div>
             <div class="meta">${val.openings}</div>
@@ -214,24 +214,24 @@
             <input type="hidden" name="company" value="${val.company}">
             <button type="submit" name="delete" class="ui button">Delete</button>
             </form>
-          </div>
-        </div>
+          </div> -->
+        <!-- </div> -->
       </div>
     </section>
-    <footer id="footer">
+    <footer id="footer" style=" bottom: 0%;">
       <div class="ui inverted vertical footer segment">
         <div class="ui container">
           <div class="ui stackable inverted equal height stackable grid">
-            <div class="three wide column">
+            <div class="four wide column">
               <div class="ui inverted link list" style="margin-left: 25px;">
                 <a href="index.php" class="item">
-                  <div style="margin-bottom: 5px;"><img src="image/logo.png"
+                  <div style="margin-bottom: 5px;text-align: center;"><img src="image/logo.png"
                       style="max-width: 100px;"></div>
   
                 </a>
               </div>
             </div>
-            <div class="nine wide column">
+            <div class="twelve wide column">
   
               <div class="ui inverted link list" style="text-align: center; margin-top: 25px;">
                 <a  class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
@@ -265,7 +265,6 @@
               </div>
   
             </div>
-            <br >
           </div>
           <p style="text-align: center; margin: 15px;">Copywrite &#169; 2022 All rights reserved.</p>
         </div>
