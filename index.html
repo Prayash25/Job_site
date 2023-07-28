@@ -17,50 +17,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script>
-      function chk() {
-
-        fetch('http://localhost/3rd_jobsite/api/login_api.php')
-           .then(res=>{
-            // console.log(res);
-                return res.json();
-           })
-           .then(resp=>{
-            console.log(resp);
-            let value=resp.status;
-            // console.log(value);
-             if(value==200){
-              return;
-             }
-             else{
-              console.log(value);
-              // delay();
-            //   setTimeout(function() {
-            //   console.log("Delay made...");
-              window.location.href=("http://localhost/3rd_jobsite/login.html");
-            //   }, 2000);
-             }
-           })
-           .catch(error=>window.location.href=("http://localhost/3rd_jobsite/login.html"));
-           
-      }
-      // function delay(){
-
-      // setTimeout(function() {
-      //   console.log("Delay made...");
-      //   window.location.href=("http://localhost/3rd_jobsite/login.html");
-      // }, 1000);
-      // }
-    document.addEventListener("DOMContentLoaded", function(event) {
-      // DOMContentLoaded event has fired
-      chk();
-      // if(i==5)window.location.href=("http://localhost/3rd_jobsite/login.html");
-    });
-    function gett(){
-      console.log("sdfg");
-      alert(2345);
-    }
-    </script>
+    
     <script src="index.js"></script>
     <style>
       @media (min-width:992px){
@@ -83,7 +40,50 @@
     </style>
 </head>
 <body>
-  
+  <script>
+    function chk() {
+
+      fetch('http://localhost/3rd_jobsite/api/login_api.php')
+         .then(res=>{
+          // console.log(res);
+              return res.json();
+         })
+         .then(resp=>{
+          console.log(resp);
+          let value=resp.status;
+          // console.log(value);
+           if(value==200){
+            return;
+           }
+           else{
+            console.log(value);
+            // delay();
+          //   setTimeout(function() {
+          //   console.log("Delay made...");
+            window.location.href=("http://localhost/3rd_jobsite/login.html");
+          //   }, 2000);
+           }
+         })
+         .catch(error=>window.location.href=("http://localhost/3rd_jobsite/login.html"));
+         
+    }
+    // function delay(){
+
+    // setTimeout(function() {
+    //   console.log("Delay made...");
+    //   window.location.href=("http://localhost/3rd_jobsite/login.html");
+    // }, 1000);
+    // }
+  document.addEventListener("DOMContentLoaded", function(event) {
+    // DOMContentLoaded event has fired
+    chk();
+    // if(i==5)window.location.href=("http://localhost/3rd_jobsite/login.html");
+  });
+  function gett(){
+    console.log("sdfg");
+    alert(2345);
+  }
+  </script>
   <!-- <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" style="background-color: #009fda!important;">
     
     <div class="container-fluid">
