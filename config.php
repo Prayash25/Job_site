@@ -286,7 +286,7 @@ else{
             $role=$_POST["role"];
             $company=$_POST["company"];
             $query1="DELETE FROM jobs WHERE email='$email' AND role='$role' AND company='$company'";
-            $query2="DELETE FROM candidates WHERE jobber_email='$email' AND role='$role';";
+            $query2="DELETE FROM candidates WHERE jobber_email='$email' AND role='$role' AND company='$company';";
             if(mysqli_query($conn,$query1)&&mysqli_query($conn,$query2)){
                 http_response_code(200);
                 header('Refresh: 2; URL=http://localhost/3rd_jobsite/employee.html');

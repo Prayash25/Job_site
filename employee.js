@@ -37,7 +37,7 @@ fetch('http://localhost/3rd_jobsite/api/employee_api.php')
                 });
                 document.getElementById("employee_job").innerHTML=v;
                 console.log(eml);
-                // glb=eml;
+                // glb=eml; 
                 assign(eml);
              }
              else if(sts1==202){
